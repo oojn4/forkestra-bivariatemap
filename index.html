@@ -33,12 +33,12 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="data/Konektivitas_0.js"></script>
         <script src="data/Aksesibilitas_1.js"></script>
-        <script src="data/Konektivitas_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-6.437783949399776,119.46984547998584],[-2.2640951092504373,126.27295828942927]]);
+        }).fitBounds([[-6.2989296,119.59581914759357],[-2.6935404000000007,125.88115005240641]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -76,19 +76,141 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        map.createPane('pane_GoogleHybrid_0');
-        map.getPane('pane_GoogleHybrid_0').style.zIndex = 400;
-        var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
-            pane: 'pane_GoogleHybrid_0',
-            opacity: 1.0,
-            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 20
+        function pop_Konektivitas_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">fid</th>\
+                        <td class="visible-with-data" id="fid">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">country_code</th>\
+                        <td class="visible-with-data" id="country_code">' + (feature.properties['country_code'] !== null ? autolinker.link(feature.properties['country_code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">country</th>\
+                        <td class="visible-with-data" id="country">' + (feature.properties['country'] !== null ? autolinker.link(feature.properties['country'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">province_code</th>\
+                        <td class="visible-with-data" id="province_code">' + (feature.properties['province_code'] !== null ? autolinker.link(feature.properties['province_code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">province</th>\
+                        <td class="visible-with-data" id="province">' + (feature.properties['province'] !== null ? autolinker.link(feature.properties['province'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">regency_code</th>\
+                        <td class="visible-with-data" id="regency_code">' + (feature.properties['regency_code'] !== null ? autolinker.link(feature.properties['regency_code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">regency</th>\
+                        <td class="visible-with-data" id="regency">' + (feature.properties['regency'] !== null ? autolinker.link(feature.properties['regency'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">district_code</th>\
+                        <td class="visible-with-data" id="district_code">' + (feature.properties['district_code'] !== null ? autolinker.link(feature.properties['district_code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">district</th>\
+                        <td class="visible-with-data" id="district">' + (feature.properties['district'] !== null ? autolinker.link(feature.properties['district'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">village_code</th>\
+                        <td class="visible-with-data" id="village_code">' + (feature.properties['village_code'] !== null ? autolinker.link(feature.properties['village_code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">village</th>\
+                        <td class="visible-with-data" id="village">' + (feature.properties['village'] !== null ? autolinker.link(feature.properties['village'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">source</th>\
+                        <td class="visible-with-data" id="source">' + (feature.properties['source'] !== null ? autolinker.link(feature.properties['source'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">date</th>\
+                        <td class="visible-with-data" id="date">' + (feature.properties['date'] !== null ? autolinker.link(feature.properties['date'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">valid_on</th>\
+                        <td class="visible-with-data" id="valid_on">' + (feature.properties['valid_on'] !== null ? autolinker.link(feature.properties['valid_on'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">area</th>\
+                        <td class="visible-with-data" id="area">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">indeks _Connectivity (m/ 10 Km)</th>\
+                        <td class="visible-with-data" id="indeks _Connectivity (m/ 10 Km)">' + (feature.properties['indeks _Connectivity (m/ 10 Km)'] !== null ? autolinker.link(feature.properties['indeks _Connectivity (m/ 10 Km)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Konektivitas_0_0(feature) {
+            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 18.175694 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 20.968928 ) {
+                return {
+                pane: 'pane_Konektivitas_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 20.968928 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 24.369667 ) {
+                return {
+                pane: 'pane_Konektivitas_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(128,195,163,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 24.369667 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 28.036527 ) {
+                return {
+                pane: 'pane_Konektivitas_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,136,70,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Konektivitas_0');
+        map.getPane('pane_Konektivitas_0').style.zIndex = 400;
+        map.getPane('pane_Konektivitas_0').style['mix-blend-mode'] = 'multiply';
+        var layer_Konektivitas_0 = new L.geoJson(json_Konektivitas_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Konektivitas_0',
+            layerName: 'layer_Konektivitas_0',
+            pane: 'pane_Konektivitas_0',
+            onEachFeature: pop_Konektivitas_0,
+            style: style_Konektivitas_0_0,
         });
-        layer_GoogleHybrid_0;
-        map.addLayer(layer_GoogleHybrid_0);
+        bounds_group.addLayer(layer_Konektivitas_0);
+        map.addLayer(layer_Konektivitas_0);
         function pop_Aksesibilitas_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -212,7 +334,7 @@
         }
         map.createPane('pane_Aksesibilitas_1');
         map.getPane('pane_Aksesibilitas_1').style.zIndex = 401;
-        map.getPane('pane_Aksesibilitas_1').style['mix-blend-mode'] = 'normal';
+        map.getPane('pane_Aksesibilitas_1').style['mix-blend-mode'] = 'multiply';
         var layer_Aksesibilitas_1 = new L.geoJson(json_Aksesibilitas_1, {
             attribution: '',
             interactive: true,
@@ -224,208 +346,20 @@
         });
         bounds_group.addLayer(layer_Aksesibilitas_1);
         map.addLayer(layer_Aksesibilitas_1);
-        function pop_Konektivitas_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">fid</th>\
-                        <td class="visible-with-data" id="fid">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">country_code</th>\
-                        <td class="visible-with-data" id="country_code">' + (feature.properties['country_code'] !== null ? autolinker.link(feature.properties['country_code'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">country</th>\
-                        <td class="visible-with-data" id="country">' + (feature.properties['country'] !== null ? autolinker.link(feature.properties['country'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">province_code</th>\
-                        <td class="visible-with-data" id="province_code">' + (feature.properties['province_code'] !== null ? autolinker.link(feature.properties['province_code'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">province</th>\
-                        <td class="visible-with-data" id="province">' + (feature.properties['province'] !== null ? autolinker.link(feature.properties['province'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">regency_code</th>\
-                        <td class="visible-with-data" id="regency_code">' + (feature.properties['regency_code'] !== null ? autolinker.link(feature.properties['regency_code'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">regency</th>\
-                        <td class="visible-with-data" id="regency">' + (feature.properties['regency'] !== null ? autolinker.link(feature.properties['regency'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">district_code</th>\
-                        <td class="visible-with-data" id="district_code">' + (feature.properties['district_code'] !== null ? autolinker.link(feature.properties['district_code'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">district</th>\
-                        <td class="visible-with-data" id="district">' + (feature.properties['district'] !== null ? autolinker.link(feature.properties['district'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">village_code</th>\
-                        <td class="visible-with-data" id="village_code">' + (feature.properties['village_code'] !== null ? autolinker.link(feature.properties['village_code'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">village</th>\
-                        <td class="visible-with-data" id="village">' + (feature.properties['village'] !== null ? autolinker.link(feature.properties['village'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">source</th>\
-                        <td class="visible-with-data" id="source">' + (feature.properties['source'] !== null ? autolinker.link(feature.properties['source'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">date</th>\
-                        <td class="visible-with-data" id="date">' + (feature.properties['date'] !== null ? autolinker.link(feature.properties['date'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">valid_on</th>\
-                        <td class="visible-with-data" id="valid_on">' + (feature.properties['valid_on'] !== null ? autolinker.link(feature.properties['valid_on'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">area</th>\
-                        <td class="visible-with-data" id="area">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">indeks _Connectivity (m/ 10 Km)</th>\
-                        <td class="visible-with-data" id="indeks _Connectivity (m/ 10 Km)">' + (feature.properties['indeks _Connectivity (m/ 10 Km)'] !== null ? autolinker.link(feature.properties['indeks _Connectivity (m/ 10 Km)'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_Konektivitas_2_0(feature) {
-            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 18.175694 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 20.968928 ) {
-                return {
-                pane: 'pane_Konektivitas_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,255,255,1.0)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 20.968928 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 24.369667 ) {
-                return {
-                pane: 'pane_Konektivitas_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(128,195,163,1.0)',
-                interactive: true,
-            }
-            }
-            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 24.369667 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 28.036527 ) {
-                return {
-                pane: 'pane_Konektivitas_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,136,70,1.0)',
-                interactive: true,
-            }
-            }
-        }
-        map.createPane('pane_Konektivitas_2');
-        map.getPane('pane_Konektivitas_2').style.zIndex = 402;
-        map.getPane('pane_Konektivitas_2').style['mix-blend-mode'] = 'multiply';
-        var layer_Konektivitas_2 = new L.geoJson(json_Konektivitas_2, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Konektivitas_2',
-            layerName: 'layer_Konektivitas_2',
-            pane: 'pane_Konektivitas_2',
-            onEachFeature: pop_Konektivitas_2,
-            style: style_Konektivitas_2_0,
-        });
-        bounds_group.addLayer(layer_Konektivitas_2);
-        map.addLayer(layer_Konektivitas_2);
-        var baseMaps = {};
-        var overlaysTree = [
-        {label: '<b>Bivariate</b>', selectAllCheckbox: true, children: [
-            {label: 'Konektivitas<br /><table><tr><td style="text-align: center;"><img src="legend/Konektivitas_2_1817572096890.png" /></td><td>18,1757 - 20,9689</td></tr><tr><td style="text-align: center;"><img src="legend/Konektivitas_2_2096892436971.png" /></td><td>20,9689 - 24,3697</td></tr><tr><td style="text-align: center;"><img src="legend/Konektivitas_2_2436972803652.png" /></td><td>24,3697 - 28,0365</td></tr></table>', layer: layer_Konektivitas_2},
-            {label: 'Aksesibilitas<br /><table><tr><td style="text-align: center;"><img src="legend/Aksesibilitas_1_0270480.png" /></td><td>0,27 - 0,48</td></tr><tr><td style="text-align: center;"><img src="legend/Aksesibilitas_1_048211.png" /></td><td>0,48 - 2,1</td></tr><tr><td style="text-align: center;"><img src="legend/Aksesibilitas_1_216192.png" /></td><td>2,1 - 6,19</td></tr></table>', layer: layer_Aksesibilitas_1},]},
-            {label: "Google Hybrid", layer: layer_GoogleHybrid_0},]
-        var lay = L.control.layers.tree(null, overlaysTree,{
-            //namedToggle: true,
-            //selectorBack: false,
-            //closedSymbol: '&#8862; &#x1f5c0;',
-            //openedSymbol: '&#8863; &#x1f5c1;',
-            //collapseAll: 'Collapse all',
-            //expandAll: 'Expand all',
-            collapsed: false, 
-        });
-        lay.addTo(map);
-		document.addEventListener("DOMContentLoaded", function() {
-            // set new Layers List height which considers toggle icon
-            function newLayersListHeight() {
-                var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
-                if (layerScrollbarElement) {
-                    var layersListElement = document.querySelector('.leaflet-control-layers-list');
-                    var originalHeight = layersListElement.style.height 
-                        || window.getComputedStyle(layersListElement).height;
-                    var newHeight = parseFloat(originalHeight) - 50;
-                    layersListElement.style.height = newHeight + 'px';
-                }
-            }
-            var isLayersListExpanded = true;
-            var controlLayersElement = document.querySelector('.leaflet-control-layers');
-            var toggleLayerControl = document.querySelector('.leaflet-control-layers-toggle');
-            // toggle Collapsed/Expanded and apply new Layers List height
-            toggleLayerControl.addEventListener('click', function() {
-                if (isLayersListExpanded) {
-                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
-                } else {
-                    controlLayersElement.classList.add('leaflet-control-layers-expanded');
-                }
-                isLayersListExpanded = !isLayersListExpanded;
-                newLayersListHeight()
-            });	
-			// apply new Layers List height if toggle layerstree
-			if (controlLayersElement) {
-				controlLayersElement.addEventListener('click', function(event) {
-					var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
-					if (toggleLayerHeaderPointer) {
-						newLayersListHeight();
-					}
-				});
-			}
-            // Collapsed/Expanded at Start to apply new height
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            setTimeout(function() {
-                toggleLayerControl.click();
-            }, 10);
-            // Collapsed touch/small screen
-            var isSmallScreen = window.innerWidth < 650;
-            if (isSmallScreen) {
-                setTimeout(function() {
-                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
-                    isLayersListExpanded = !isLayersListExpanded;
-                }, 500);
-            }  
-        });       
         setBounds();
+        var i = 0;
+        layer_Konektivitas_0.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['regency'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['regency']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Konektivitas_0'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
         var i = 0;
         layer_Aksesibilitas_1.eachLayer(function(layer) {
             var context = {
@@ -439,28 +373,15 @@
               addLabel(layer, i);
               i++;
         });
-        var i = 0;
-        layer_Konektivitas_2.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['regency'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['regency']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Konektivitas_2'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-        resetLabels([layer_Aksesibilitas_1,layer_Konektivitas_2]);
+        resetLabels([layer_Konektivitas_0,layer_Aksesibilitas_1]);
         map.on("zoomend", function(){
-            resetLabels([layer_Aksesibilitas_1,layer_Konektivitas_2]);
+            resetLabels([layer_Konektivitas_0,layer_Aksesibilitas_1]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Aksesibilitas_1,layer_Konektivitas_2]);
+            resetLabels([layer_Konektivitas_0,layer_Aksesibilitas_1]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Aksesibilitas_1,layer_Konektivitas_2]);
+            resetLabels([layer_Konektivitas_0,layer_Aksesibilitas_1]);
         });
         </script>
     </body>

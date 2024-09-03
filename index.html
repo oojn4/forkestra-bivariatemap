@@ -38,7 +38,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-6.2989296,119.59581914759357],[-2.6935404000000007,125.88115005240641]]);
+        }).fitBounds([[-6.691296425386094,118.41948796793977],[-2.0242673958891935,126.55559205144775]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -139,8 +139,8 @@
                         <td class="visible-with-data" id="area">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">indeks _Connectivity (m/ 10 Km)</th>\
-                        <td class="visible-with-data" id="indeks _Connectivity (m/ 10 Km)">' + (feature.properties['indeks _Connectivity (m/ 10 Km)'] !== null ? autolinker.link(feature.properties['indeks _Connectivity (m/ 10 Km)'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">koenktifitas</th>\
+                        <td class="visible-with-data" id="koenktifitas">' + (feature.properties['koenktifitas'] !== null ? autolinker.link(feature.properties['koenktifitas'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -151,7 +151,7 @@
         }
 
         function style_Konektivitas_0_0(feature) {
-            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 18.175694 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 20.968928 ) {
+            if (feature.properties['koenktifitas'] >= -28.036527 && feature.properties['koenktifitas'] <= -24.840985 ) {
                 return {
                 pane: 'pane_Konektivitas_0',
                 opacity: 1,
@@ -166,7 +166,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 20.968928 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 24.369667 ) {
+            if (feature.properties['koenktifitas'] >= -24.840985 && feature.properties['koenktifitas'] <= -21.858049 ) {
                 return {
                 pane: 'pane_Konektivitas_0',
                 opacity: 1,
@@ -181,7 +181,7 @@
                 interactive: true,
             }
             }
-            if (feature.properties['indeks _Connectivity (m/ 10 Km)'] >= 24.369667 && feature.properties['indeks _Connectivity (m/ 10 Km)'] <= 28.036527 ) {
+            if (feature.properties['koenktifitas'] >= -21.858049 && feature.properties['koenktifitas'] <= -18.175694 ) {
                 return {
                 pane: 'pane_Konektivitas_0',
                 opacity: 1,
